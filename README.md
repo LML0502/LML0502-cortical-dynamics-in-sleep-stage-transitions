@@ -7,7 +7,7 @@ Rebuild the environment on the target machine：
 conda env create -f environment.yml
 #### Embeddings Data
 
-<a href="https://zenodo.org/records/15307159?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjJiYWIwNjdkLWM0NTQtNDhiNC1iNzgxLWU5YjJhM2FkMjY3MiIsImRhdGEiOnt9LCJyYW5kb20iOiJmMjc2NGIwYzdmNGViZmNiZjI3YjIyMmEzMGVkMTZkNiJ9.whE6ex1cfDSY1Zr8vg3T6vFDEwS2P7UWvAaEB4K5nF5tA1wo6T7bQw9-VfVlAaNsRPm2nTzF1ex8eYxkkXH2BA" target="data_link">GitHub（新标签页打开）</a>
+<a href="https://zenodo.org/uploads/15307159" target="data_link">data_link</a>
 
 
 #### Visualization and analysis

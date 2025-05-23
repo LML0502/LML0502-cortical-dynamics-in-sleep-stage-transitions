@@ -30,7 +30,7 @@ if __name__ == '__main__':
     color1 = ['#934B43', '#5f97d2', '#BB9727', '#C497B2', '#9dc3e7', '#929491']
 
     # Plot raw EEG data on right subplot with custom colors
-    file_name = "./data/sub_lxx_2023-12-07_13-06-35.set"
+    file_name = "/mnt/D/sleep transition/data/sub_lxx_2023-12-07_13-06-35.set"
     plot_figure.raw_plot(file_name,color=color1, ax=ax[1])  # Plot raw data
 
     # Adjust subplot spacing (instead of tight_layout)
@@ -48,8 +48,8 @@ if __name__ == '__main__':
              ]
 
     # Generate composite plot with hypnogram, spectrogram and raw signals
-    filename_f = "./data/sub_tt_2023-11-09_13-01-50.set"
-    filename_y = './data/ica_so_pkl/'
+    filename_f = "/mnt/D/sleep transition/data/sub_tt_2023-11-09_13-01-50.set"
+    filename_y = '/mnt/D/sleep transition/data/ica_so_pkl/'
     plot_figure.raw_eog_stage_plot(filename_f,filename_y,color=color)
     # Save figure
     figsave = "../figures/fig_1_b.png"
@@ -57,12 +57,12 @@ if __name__ == '__main__':
 
     # ========== FIGURE 1C: CHANNEL ACTIVITY BY SLEEP STAGE ==========
     # Load preprocessed EEG epochs data
-    file_name = './data/epoch_eeg_ica/sub_dwj_2023-11-08_13-07-58.fif'
+    file_name = '/mnt/D/sleep transition/data/epoch_eeg_ica/sub_dwj_2023-11-08_13-07-58.fif'
     epochs = mne.read_epochs(file_name, preload=True)
     epochs.filter(0.5, 45)  # Bandpass filter (0.5-45 Hz)
 
     # Load corresponding raw EEG data for reference
-    file_name = "./data/sub_dwj_2023-11-08_13-07-58.set"
+    file_name = "/mnt/D/sleep transition/data/sub_dwj_2023-11-08_13-07-58.set"
     raw_filtre = mne.io.read_raw_eeglab(file_name, preload=True)
     raw_filtre.filter(0.5, 45)  # Apply same filtering
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     # ========== FIGURE 1D: SLEEP STAGE DURATION PERCENTAGE ==========
     # Calculate and plot the time spent in each stage
     # File path pattern for EEG data files in FIF format
-    file_name = './data/epoch_eeg_ica/*.fif'
+    file_name = '/mnt/D/sleep transition/data/epoch_eeg_ica/*.fif'
     plot_figure.sleep_time_state(file_name,color)
     plt.savefig('../figures/fig1_d.png')
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     transition_matrix_label = np.zeros((5, 5))  # Not used?
 
     # Process all subjects' data to build transition statistics
-    file = './data/ica_so_pkl/*.pkl'
+    file = '/mnt/D/sleep transition/data/ica_so_pkl/*.pkl'
     for filename in glob.glob(file):
         print(f"Processing {filename}")
         self = Signal(load_pickle=True, filename=filename)
@@ -120,8 +120,8 @@ if __name__ == '__main__':
     # Main execution block for sleep stage source analysis and visualization
 
     # Define paths for input data and output results
-    data_path = './data/epoch_eeg_ica/*.fif'  # Path pattern to find preprocessed EEG files in FIF format
-    save_path = './data/stc_dsmp/'  # Directory to save source localization results
+    data_path = '/mnt/D/sleep transition/data/epoch_eeg_ica/*.fif'  # Path pattern to find preprocessed EEG files in FIF format
+    save_path = '/mnt/D/sleep transition/data/stc_dsmp/'  # Directory to save source localization results
 
     # 1. Perform source estimation for each sleep stage
     # This function will:
@@ -185,7 +185,7 @@ if __name__ == '__main__':
 
 
     # ========== FIGURE 5: THE CORRELATION COEFFICIENTS OF STAGES' SOURCE ==========
-    file = './data/ica_so_pkl/*.pkl'
+    file = '/mnt/D/sleep transition/data/ica_so_pkl/*.pkl'
     # count_sub_n_sp, count_sub_r_sp, count_sub_r_win_sp, count_sub_n_win_sp = N2_3_R_num(type='sp', win=20)
     count_sub_n_so, count_sub_r_so, count_sub_r_win_so, count_sub_n_win_so = N2_3_R_num(type='so', win=20)
     # count_sub_n_co, count_sub_r_co, count_sub_r_win_co, count_sub_n_win_co = N2_3_R_num(type='co', win=20)
@@ -199,7 +199,7 @@ if __name__ == '__main__':
 
     # ========== FIGURE 7: THE BRAIN NETWORK CONNECTIVITY ==========
     ### source connectivity plot
-    base_path = './data/stc_dsmp_imcoh'
+    base_path = '/mnt/D/sleep transition/data/stc_dsmp_imcoh'
     file = './data/stc_dsmp_imcoh/network_value'
     bands = ['[0.5, 4]']
     ylabels = ['Diameter', 'Eccentricity', 'Leaf number', 'Tree hierarchy']
@@ -215,7 +215,7 @@ if __name__ == '__main__':
             data.append(values)
         for i in range(4):
             data_ = [data[1][:, i], data[0][:, i], data[2][:, i]]
-            base_name = './data/stc_dsmp_imcoh/network_value/figure_n2_n3_rem/'
+            base_name = '/mnt/D/sleep transition/data/stc_dsmp_imcoh/network_value/figure_n2_n3_rem/'
             source_function.mkdir(base_name)
             figname = base_name + band + ylabels[i] + '.png'
             if i == 0:
@@ -227,7 +227,7 @@ if __name__ == '__main__':
             if i == 3:
                 ax_sub = ax[1, 1]
             network.network_test_plot(data_,name_list, figname, ylabels[i], ax=ax_sub, color=color, color1=color1)  # plot 小提琴图
-            base_name = './data/stc_dsmp_imcoh/network_value/figure_n2_n3_rem_logic/'
+            base_name = '/mnt/D/sleep transition/data/stc_dsmp_imcoh/network_value/figure_n2_n3_rem_logic/'
             source_function.mkdir(base_name)
             savename = base_name + band + ylabels[i] + '.png'
             network.network_logic_plot(data_, ylabels[i], savename, ax=ax_sub)  # plot 回归结果

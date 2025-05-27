@@ -231,7 +231,7 @@ def raw_eog_stage_plot(filename_f,filename_y,color=None):
 
 
 
-def stages_channels_plot(epochs, raw_filtre, stages, num, ax, color, label, start):
+def stages_channels_plot(epochs, raw, stages, num, ax, color, label, start):
     # epochs.filter(0.5, 45)
     #### 10s data
     win = 10 * 500
@@ -243,11 +243,11 @@ def stages_channels_plot(epochs, raw_filtre, stages, num, ax, color, label, star
                     'C5', 'Cz', 'C2', 'C4', 'C6', 'CP1', 'CP3', 'CP5', 'CP2', 'CP4', 'CP6', 'T7', 'T8',
                     'TP7', 'TP8', 'P1', 'P3', 'P5', 'P7', 'Pz', 'P2', 'P4', 'P6', 'P8', 'PO3', 'PO5', 'PO7',
                     'POz', 'PO4', 'PO6', 'PO8', 'O1', 'Oz', 'O2', 'M1', 'M2']
-    data = (raw_filtre.get_data(picks=eeg_channels) * 1000000)[:,
+    data = (raw.get_data(picks=eeg_channels) * 1000000)[:,
            int(event[0][0] + start * win):int(event[0][0] + end * win)]
 
     # raw_filtre.filter(0.5, 45)
-    data_EOG = np.squeeze(raw_filtre.get_data(picks='EOG') * 1000000)
+    data_EOG = np.squeeze(raw.get_data(picks='EOG') * 1000000)
 
     t = np.linspace(0, 5, data.shape[1])
     ax.spines['top'].set_visible(False), ax.spines['right'].set_visible(False)
@@ -502,7 +502,7 @@ def source_stage_plot(stc_path):
         # Initialize variables for averaging
         data_all = 0  # Will accumulate source data
         count = 0  # Count of processed files
-
+        stc_template = None
         # Process each right hemisphere STC file
         for j in glob.glob(path):
             if j.endswith('-rh.stc'):  # Only process right hemisphere files

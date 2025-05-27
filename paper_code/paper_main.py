@@ -40,11 +40,11 @@ if __name__ == '__main__':
 
     # ========== FIGURE 1B: SLEEP STAGE HYPNOGRAM WITH RAW SIGNALS ==========
     # Define custom color palette for sleep stages
-    color = ['#e94958',  # Wake (red)
-             '#7dc474',  # N1 (green)
-             '#40b7ad',  # N2 (teal)
-             '#413d7b',  # N3 (purple)
-             '#f8ad3c'  # REM (orange)
+    color = ['#e94958',  # Wake
+             '#7dc474',  # N1
+             '#40b7ad',  # N2
+             '#413d7b',  # N3
+             '#f8ad3c'  # REM
              ]
 
     # Generate composite plot with hypnogram, spectrogram and raw signals
@@ -63,22 +63,22 @@ if __name__ == '__main__':
 
     # Load corresponding raw EEG data for reference
     file_name = "/mnt/D/sleep transition/data/sub_dwj_2023-11-08_13-07-58.set"
-    raw_filtre = mne.io.read_raw_eeglab(file_name, preload=True)
-    raw_filtre.filter(0.5, 45)  # Apply same filtering
+    raw = mne.io.read_raw_eeglab(file_name, preload=True)
+    raw.filter(0.5, 45)  # Apply same filtering
 
     # Create 5-panel figure (one per sleep stage)
     fig, ax = plt.subplots(1, 5, figsize=(15 * cm, 4 * cm))
 
     # Plot representative channel activity for each stage:
-    plot_figure.stages_channels_plot(epochs, raw_filtre, 'wake', 5, ax[0],
+    plot_figure.stages_channels_plot(epochs, raw, 'wake', 5, ax[0],
                                      color=color[0], label='Wake', start=1)
-    plot_figure.stages_channels_plot(epochs, raw_filtre, 'N1', 1, ax[1],
+    plot_figure.stages_channels_plot(epochs, raw, 'N1', 1, ax[1],
                                      color=color[1], label='N1', start=1)
-    plot_figure.stages_channels_plot(epochs, raw_filtre, 'N2', 26, ax[2],
+    plot_figure.stages_channels_plot(epochs, raw, 'N2', 26, ax[2],
                                      color=color[2], label='N2', start=0.5)
-    plot_figure.stages_channels_plot(epochs, raw_filtre, 'N3', 36, ax[3],
+    plot_figure.stages_channels_plot(epochs, raw, 'N3', 36, ax[3],
                                      color=color[3], label='N3', start=0)
-    plot_figure.stages_channels_plot(epochs, raw_filtre, 'REM', 16, ax[4],
+    plot_figure.stages_channels_plot(epochs, raw, 'REM', 16, ax[4],
                                      color=color[4], label='REM', start=0)
 
     plt.tight_layout()

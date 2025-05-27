@@ -281,9 +281,6 @@ def mkdir(path):
         os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
 
 
-'''figure plot'''
-
-
 def connection_matrix_plot(con, ch_names, title, savename, vmin, vmax):
     '''EEG connectivity plot'''
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 15))

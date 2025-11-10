@@ -8,14 +8,14 @@ This repository contains the code that accompanies 'Progressive cortical dynamic
 git clone https://github.com/LML0502/LML0502-cortical-dynamics-in-sleep-stage-transitions.git
 cd LML0502-cortical-dynamics-in-sleep-stage-transitions/paper_code
 
-conda env create -n <your_env_name> -f environment.yml
+conda env create -n <your_env_name> 
 conda activate <your_env_name>
 pip install -r requirements.txt
 ```
 
 ### Embeddings Data
 The data used in the article has been uploaded to the following websites and can be downloaded by yourself.
-<a href="https://zenodo.org/uploads/15307159" target="data_link">data_link</a>
+<a href="https://zenodo.org/uploads/15307159" target="data_link">datalink</a>
 
 ### Visualization and analysis
 
@@ -40,8 +40,7 @@ jupyter notebook sleep_dynamics_modeling.ipynb
 - `rate_model.py` - Rate-based neural modeling
 - `test_statistics.py` - Statistical testing functions
 - `requirements.txt` - Python package dependencies for pip installation
-- `environment.yml` - Conda environment configuration
 
 ### Requirements
-- Python 3.10 or higher
+- Python 3.10
 - See `requirements.txt` for detailed package dependencies
